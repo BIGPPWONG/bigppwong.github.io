@@ -10,8 +10,9 @@ categories:
  - iOS
 ---
 <a href="https://apps.apple.com/cn/app/pixai/id6443815029?itscg=30200&amp;itsct=apps_box_appicon" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"><img src="https://is5-ssl.mzstatic.com/image/thumb/Purple112/v4/1d/95/60/1d956018-56fd-9dbf-0dff-ebffebda763c/AppIcon-1x_U007emarketing-0-10-0-85-220.png/540x540bb.jpg?h=eae88dfee24ad2dc91b8a89caa201db7" alt="PixAI" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"></a>    
-# PixAI
-This page is manual for iOS APP PixAI, an application focusing on super resolution.
+## PixAI - An iOS app for Super Resolution
+> PixAI is a software that focuses on using AI algorithm to improve image clarity.  
+
 ## Download
 You can install it on **iPhone, iPad, and MacBook with Apple Silicon**.   
 
