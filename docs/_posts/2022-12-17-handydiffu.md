@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 author: BIGWONG Studio
 title:  "HandyDiffu iOS App User Manual"
 comments: true

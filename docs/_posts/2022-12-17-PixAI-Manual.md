@@ -1,16 +1,22 @@
 ---
-layout: post
+layout: single
 author: BIGWONG Studio
 title:  "PixAI iOS App User Manual"
 comments: true
 header:
+  show_overlay_excerpt: false
+  excerpt: PixAI is a software that focuses on using AI algorithm to improve image clarity.  
+  # overlay_image: 
   overlay_color: "#333"
 categories: 
  - PixAI
  - iOS
----
-<a href="https://apps.apple.com/cn/app/pixai/id6443815029?itscg=30200&amp;itsct=apps_box_appicon" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"><img src="https://is5-ssl.mzstatic.com/image/thumb/Purple112/v4/1d/95/60/1d956018-56fd-9dbf-0dff-ebffebda763c/AppIcon-1x_U007emarketing-0-10-0-85-220.png/540x540bb.jpg?h=eae88dfee24ad2dc91b8a89caa201db7" alt="PixAI" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"></a>    
+---   
+
+
+
 ## PixAI - An iOS app for Super Resolution
+<a href="https://apps.apple.com/cn/app/pixai/id6443815029?itscg=30200&amp;itsct=apps_box_appicon" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"><img src="https://is5-ssl.mzstatic.com/image/thumb/Purple112/v4/1d/95/60/1d956018-56fd-9dbf-0dff-ebffebda763c/AppIcon-1x_U007emarketing-0-10-0-85-220.png/540x540bb.jpg?h=eae88dfee24ad2dc91b8a89caa201db7" alt="PixAI" style=" width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"></a>
 > PixAI is a software that focuses on using AI algorithm to improve image clarity.  
 
 ## Download
