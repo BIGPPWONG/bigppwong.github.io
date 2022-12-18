@@ -3,14 +3,24 @@ layout: single
 author: BIGWONG Studio
 title:  "HandyDiffu iOS App User Manual"
 comments: true
+excerpt: "HandyDiffu is a third party client for AUTOMATIC1111/stable-diffusion-webui"
 header:
+  show_overlay_excerpt: true
+  overlay_image: /assets/pixai/unsplash.jpg
   overlay_color: "#333"
+  overlay_filter: 0.5
+  caption: Photo by <a href="https://unsplash.com/@fabioha?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">fabio</a> on <a href="https://unsplash.com/s/photos/tech?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  actions:
+    - label: "Download"
+      url: "https://apps.apple.com/cn/app/handydiffu/id6444753824?itsct=apps_box_link&itscg=30200"
 categories: 
- - PixAI
+ - HandyDiffu
  - iOS
----
-<a href="https://apps.apple.com/us/app/handydiffu/id6444753824?itscg=30200&amp;itsct=apps_box_appicon" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/89/03/8d/89038df1-b49f-65e4-bca1-705f5bc3adde/AppIcon-1x_U007emarketing-0-10-0-85-220.png/540x540bb.jpg?h=656d6eb1ea5be1642ac7acaa6f72acf4" alt="HandyDiffu" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"></a>
+---    
+
 ## HandyDiffu - An iOS client for stable diffusion
+<a href="https://apps.apple.com/us/app/handydiffu/id6444753824?itscg=30200&amp;itsct=apps_box_appicon" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/89/03/8d/89038df1-b49f-65e4-bca1-705f5bc3adde/AppIcon-1x_U007emarketing-0-10-0-85-220.png/540x540bb.jpg?h=656d6eb1ea5be1642ac7acaa6f72acf4" alt="HandyDiffu" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"></a>
+
 > HandyDiffu is a third party client for [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui), you must have deploy **your own stable diffusion server** to use this app.   
 
 ## Download
