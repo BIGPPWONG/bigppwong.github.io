@@ -58,9 +58,9 @@ plugins:
 comments:
   provider: "facebook"
   facebook:
-    appid: # optional
-    num_posts: # 5 (default)
-    colorscheme: # "light" (default), "dark"
+    appid: 1135101337369566
+    num_posts: 10
+    colorscheme: "light"
 #  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname            : "bigppwong" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
