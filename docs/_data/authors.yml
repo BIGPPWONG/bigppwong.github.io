@@ -1,0 +1,8 @@
+剧烈燃烧的CO2:
+  name        : "剧烈燃烧的CO2"
+  bio         : ""
+  avatar      : "/assets/images/剧烈燃烧的CO2-logos.jpeg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:weiwen.wong90@gmail.com"
