@@ -4,6 +4,7 @@ author: BIGWONG Studio
 title:  "HandyDiffu iOS App User Manual"
 comments: true
 excerpt: "HandyDiffu is a third party client for AUTOMATIC1111/stable-diffusion-webui"
+toc: true 
 header:
   show_overlay_excerpt: true
   overlay_image: /assets/pixai/unsplash.jpg
