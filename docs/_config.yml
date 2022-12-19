@@ -107,6 +107,12 @@ google:
 google_site_verification : "KP_4pFziLDZMp_HA2bfwX4G3s_xb1PHVunUr8L9-wHo"
 bing_site_verification   : "D6B624A1D41E6A2712A2288DFFAEC5A6"
 
+analytics:
+  provider               : "custom" # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id          : #
+    anonymize_ip         : # true, false (default)
+
 # Site Footer
 footer:
   links:
@@ -154,3 +160,4 @@ defaults:
         overlay_color: "#333"
         overlay_filter: 0.5
         caption: Photo by <a href="https://unsplash.com/@fabioha?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">fabio</a> on <a href="https://unsplash.com/s/photos/tech?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
