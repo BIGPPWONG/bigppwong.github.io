@@ -105,6 +105,30 @@ google:
 google_site_verification : "KP_4pFziLDZMp_HA2bfwX4G3s_xb1PHVunUr8L9-wHo"
 bing_site_verification   : "D6B624A1D41E6A2712A2288DFFAEC5A6"
 
+# Site Footer
+footer:
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:weiwen.wong90@gmail.com"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      # url:
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      # url:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/BIGPPWONG"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      # url:
+    - label: "Bitbucket"
+      icon: "fab fa-fw fa-bitbucket"
+      # url:
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+
 
 # Defaults
 defaults:
