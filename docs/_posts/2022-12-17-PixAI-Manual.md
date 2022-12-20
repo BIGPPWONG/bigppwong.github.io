@@ -34,12 +34,8 @@ You can install it on **iPhone, iPad, and MacBook with Apple Silicon**.
 ## What is this app for ?
 PixAI is a software built for iOS device that focuses on using AI algorithm to improve image definition. It can easily enlarge low resolution images by 16X.   
 
-<img src="/assets/pixai/1.jpg" width="250"><img src="/assets/pixai/2.jpg" width="250"><img src="/assets/pixai/3.jpg" width="250"><img src="/assets/pixai/4.jpg" width="250">   
-
-
-
-
-
+<img src="/assets/pixai/1.jpg" width="250"><img src="/assets/pixai/2.jpg" width="250"><img src="/assets/pixai/3.jpg" width="250"><img src="/assets/pixai/4.jpg" width="250"><img src="/assets/pixai/5.jpg" width="250">
+<img src="/assets/pixai/6.jpg" width="250">     
 
 Minimum configuration requirements:   
 1. Apple A12 chip
