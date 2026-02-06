@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 interface Heading {
   id: string;
@@ -8,8 +9,9 @@ interface Heading {
   level: number;
 }
 
-export default function TableOfContents({ headings }: { headings: Heading[] }) {
+export default function TableOfContents({ headings, lang }: { headings: Heading[]; lang: Locale }) {
   const [activeId, setActiveId] = useState<string>("");
+  const t = getDictionary(lang);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,7 +39,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
     <nav className="hidden xl:block">
       <div className="sticky top-24">
         <h3 className="mb-3 text-sm font-semibold text-neutral-900 dark:text-white">
-          Table of Contents
+          {t.post.toc}
         </h3>
         <ul className="space-y-2 text-sm">
           {headings.map((heading) => (

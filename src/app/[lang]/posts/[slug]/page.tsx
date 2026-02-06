@@ -1,22 +1,35 @@
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
+import { enUS, zhCN } from "date-fns/locale";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
 import TableOfContents from "@/components/TableOfContents";
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { locales, getDictionary, type Locale } from "@/lib/i18n";
+
+const dateLocales = { en: enUS, zh: zhCN } as const;
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const slugs = getAllPostSlugs();
-  return slugs.map((slug) => ({ slug }));
+export function generateStaticParams() {
+  const params: { lang: string; slug: string }[] = [];
+  for (const lang of locales) {
+    const slugs = getAllPostSlugs(lang);
+    for (const slug of slugs) {
+      params.push({ lang, slug });
+    }
+  }
+  return params;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { lang: langParam, slug } = await params;
+  const lang = langParam as Locale;
+  const post = await getPostBySlug(lang, slug);
   if (!post) return {};
 
   return {
@@ -28,23 +41,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
-      url: `${siteConfig.url}/posts/${slug}`,
+      url: `${siteConfig.url}/${lang}/posts/${slug}`,
     },
   };
 }
 
 export default async function PostPage({ params }: PageProps) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const { lang: langParam, slug } = await params;
+  const lang = langParam as Locale;
+  const post = await getPostBySlug(lang, slug);
+  const t = getDictionary(lang);
 
   if (!post) {
     notFound();
   }
 
+  const datePattern = lang === "zh" ? "yyyy 年 M 月 d 日" : "MMMM d, yyyy";
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-12">
       <div className="flex flex-col gap-12 xl:flex-row">
-        {/* Main content */}
         <article className="min-w-0 max-w-4xl flex-1">
           <header className="mb-8">
             <h1 className="mb-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
@@ -52,7 +68,9 @@ export default async function PostPage({ params }: PageProps) {
             </h1>
             <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400">
               <time dateTime={post.date}>
-                {format(new Date(post.date), "MMMM d, yyyy")}
+                {format(new Date(post.date), datePattern, {
+                  locale: dateLocales[lang],
+                })}
               </time>
               <span>&middot;</span>
               <span>{post.readingTime}</span>
@@ -79,9 +97,8 @@ export default async function PostPage({ params }: PageProps) {
           />
         </article>
 
-        {/* Table of Contents sidebar */}
         <aside className="hidden w-64 shrink-0 xl:block">
-          <TableOfContents headings={post.headings} />
+          <TableOfContents headings={post.headings} lang={lang} />
         </aside>
       </div>
     </div>

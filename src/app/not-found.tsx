@@ -7,13 +7,13 @@ export default function NotFound() {
         404
       </h1>
       <p className="mb-8 text-lg text-neutral-600 dark:text-neutral-400">
-        The page you are looking for does not exist.
+        Page not found / 页面未找到
       </p>
       <Link
-        href="/"
+        href="/zh"
         className="rounded-lg bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
       >
-        Back to Home
+        Back to Home / 返回首页
       </Link>
     </div>
   );
