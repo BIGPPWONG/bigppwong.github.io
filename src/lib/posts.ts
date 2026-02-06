@@ -29,22 +29,18 @@ export interface Post extends PostMeta {
   headings: { id: string; text: string; level: number }[];
 }
 
-function extractHeadings(
-  markdown: string
+function extractHeadingsFromHtml(
+  html: string
 ): { id: string; text: string; level: number }[] {
   const headings: { id: string; text: string; level: number }[] = [];
-  const lines = markdown.split("\n");
-  for (const line of lines) {
-    const match = line.match(/^(#{1,6})\s+(.+)$/);
-    if (match) {
-      const level = match[1].length;
-      const text = match[2].replace(/[*_`\[\]]/g, "").trim();
-      const id = text
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, "")
-        .replace(/\s+/g, "-");
-      headings.push({ id, text, level });
-    }
+  const regex = /<h([1-6])\s+id="([^"]*)"[^>]*>([\s\S]*?)<\/h\1>/g;
+  let match;
+  while ((match = regex.exec(html)) !== null) {
+    const level = parseInt(match[1], 10);
+    const id = match[2];
+    // Strip HTML tags from heading content to get plain text
+    const text = match[3].replace(/<[^>]*>/g, "").trim();
+    headings.push({ id, text, level });
   }
   return headings;
 }
@@ -116,7 +112,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   const dateMatch = fileName.match(/^(\d{4}-\d{2}-\d{2})/);
   const date = dateMatch ? dateMatch[1] : data.date || "";
 
-  const headings = extractHeadings(content);
   const stats = readingTime(content);
 
   const result = await unified()
@@ -129,6 +124,9 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
 
+  const html = result.toString();
+  const headings = extractHeadingsFromHtml(html);
+
   return {
     slug,
     title: data.title || slug,
@@ -138,7 +136,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     author: data.author || "BIGWONG Studio",
     coverImage: data.coverImage || data.header?.overlay_image,
     readingTime: stats.text,
-    content: result.toString(),
+    content: html,
     headings,
   };
 }
