@@ -36,7 +36,7 @@ export default function TableOfContents({ headings, lang }: { headings: Heading[
   if (headings.length === 0) return null;
 
   return (
-    <nav className="hidden xl:block">
+    <nav>
       <div className="sticky top-24">
         <h3 className="mb-3 text-sm font-semibold text-neutral-900 dark:text-white">
           {t.post.toc}
