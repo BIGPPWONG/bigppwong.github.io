@@ -1,6 +1,6 @@
 ---
-title: "Convert a Compiled OpenWrt RootFS into a Docker Image"
-excerpt: "Package OpenWrt rootfs into Docker and adjust configs for side-router usage."
+title: "Convert an OpenWrt Rootfs to a Docker Image"
+excerpt: "Package an OpenWrt rootfs tarball into a Docker image for bypass-router deployments."
 categories:
   - Docker
   - OpenWrt
@@ -8,44 +8,44 @@ author: BIGWONG Studio
 coverImage: /home/unsplash.jpg
 ---
 
-This guide packages `openwrt-x86-64-generic-rootfs.tar.gz` into a Docker image for side-router deployment.
+Package `openwrt-x86-64-generic-rootfs.tar.gz` into a Docker image for a bypass-router setup.
 
-1. Get the OpenWrt rootfs:
-   - Build it yourself, or
-   - Download from OpenWrt: [openwrt-21.02.2-x86-64-rootfs.tar.gz](https://downloads.openwrt.org/releases/21.02.2/targets/x86/64/openwrt-21.02.2-x86-64-rootfs.tar.gz)
-2. Rename it to `OpenWrt.tar.gz`
-3. Create a `Dockerfile`:
+1. **Get the OpenWrt rootfs**
+- Build it yourself, or
+- Download a prebuilt rootfs from [OpenWrt releases](https://downloads.openwrt.org/releases/21.02.2/targets/x86/64/openwrt-21.02.2-x86-64-rootfs.tar.gz)
 
-```dockerfile
+2. **Rename the file** to `OpenWrt.tar.gz`
+
+3. **Create a `Dockerfile`**
+```shell
 FROM scratch
 ADD OpenWrt.tar.gz /
 EXPOSE 80 443 22
 CMD ["/sbin/init"]
 ```
 
-4. Build image:
-
+4. **Build the image**
 ```shell
 docker build -t myopenwrt .
 ```
+At this point the image is ready, but the default firewall and IP settings will break the network when you run it. Update configs below.
 
-At this point the image is buildable, but default firewall and network settings can break your network. Continue with custom configs.
-
-5. Save these files in the same directory as your `Dockerfile`:
+5. **Save the following files** in the same folder as the `Dockerfile`
 
 | File | Purpose |
-| ---- | ---- |
+| ---- | ------- |
 | [turboacc](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/turboacc) | Disable flow offloading |
 | [dhcp](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/dhcp) | Disable DHCP |
-| [firewall](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/firewall) | Side-router firewall rules |
-| [inittab](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/inittab) | Boot startup items |
-| [network](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/network) | Container IP / gateway / DNS |
-| [rc.local](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/rc.local) | Rewrite `resolv.conf` at boot |
-| [resolv.conf](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/resolv.conf) | Local DNS settings |
+| [firewall](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/firewall) | Bypass-router firewall rules |
+| [inittab](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/inittab) | Startup services |
+| [network](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/network) | Container IP, gateway, DNS |
+| [rc.local](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/rc.local) | Rewrite `resolv.conf` on boot |
+| [resolv.conf](https://raw.githubusercontent.com/bigppwong/test_build/main/docker/resolv.conf) | DNS config |
 
-6. Replace the Dockerfile with:
+**Note:** Some upstream routers implement NAT differently. If OpenWrt itself works but downstream devices cannot access the internet, enable **IP masquerade (MASQUERADE)** in OpenWrt firewall settings. If it already works without it, keep it off.
 
-```dockerfile
+6. **Replace `Dockerfile` content**
+```shell
 FROM scratch
 ADD OpenWrt.tar.gz /
 COPY turboacc /etc/config/turboacc
@@ -59,10 +59,9 @@ EXPOSE 80 443 22
 CMD ["/sbin/init"]
 ```
 
-7. Rebuild:
-
+7. **Rebuild the image**
 ```shell
 docker build -t myopenwrt .
 ```
 
-8. Run and validate as a side router.
+8. **Run and test your bypass router**

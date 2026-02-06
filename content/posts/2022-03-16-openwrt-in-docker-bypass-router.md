@@ -1,38 +1,38 @@
 ---
-title: "Build an OpenWrt Side Router with Docker"
-excerpt: "Use Docker macvlan mode to run OpenWrt as a side router."
+title: "Run OpenWrt in Docker (Bypass Router)"
+excerpt: "Use Docker macvlan to run OpenWrt as a bypass router on your LAN."
 categories:
-  - Networking
   - OpenWrt
+  - Network
 author: BIGWONG Studio
 coverImage: /home/unsplash.jpg
 ---
 
-**Principle:** This solution uses Docker `macvlan` to create a Layer-2 virtual NIC for the container, similar to bridge mode in a VM.
+**Principle:** Use Docker macvlan to virtualize a Layer-2 NIC for the container, similar to a bridged NIC in a VM.
 
 **Default credentials:** `root` / `password`
 
 **Image:** [raymondwong/openwrt_r9](https://hub.docker.com/r/raymondwong/openwrt_r9)
 
-### Option 1: CLI
-
+### Option 1: Shell Command
 ```shell
-ip link set [your local NIC, e.g. eth0] promisc on
+ip link set [your NIC, e.g. eth0] promisc on
 docker network create -d macvlan --subnet=192.168.1.0/24 --gateway=192.168.1.1 -o parent=[same NIC as above] macnet
 docker run --restart always -d --network macnet --privileged -v /lib/modules:/lib/modules raymondwong/openwrt_r9:autobuild-21.12.6-arm64
 ```
-
-After the container is running, open [http://192.168.1.254](http://192.168.1.254) to verify deployment.
+Wait until the container is `running`, then open [http://192.168.1.254](http://192.168.1.254) to verify.
 
 ### Option 2: Docker Compose
-
 ```shell
-ip link set [your local NIC, e.g. eth0] promisc on
+ip link set [your NIC, e.g. eth0] promisc on
 mkdir openwrt && cd openwrt
-# create docker-compose.yaml from below, then run:
+# Save the YAML below as docker-compose.yaml, then edit driver_opts.parent to your NIC
+# In the same folder, run:
 docker-compose up -d
 ```
+Wait until the container is `running`, then open [http://192.168.1.254](http://192.168.1.254) to verify.
 
+**docker-compose.yaml**
 ```yaml
 version: '2'
 services:
@@ -57,4 +57,4 @@ networks:
           gateway: 192.168.1.1
 ```
 
-> Note: This is a single-NIC virtual router setup. If some plugins do not work correctly, try adding a second virtual NIC.
+**Note:** This is a single-NIC solution. If some plugins misbehave, try adding a second virtual NIC to simulate a real router.
