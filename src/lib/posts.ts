@@ -10,8 +10,9 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import readingTime from "reading-time";
+import type { Locale } from "./i18n";
 
-const postsDirectory = path.join(process.cwd(), "content/posts");
+const contentBase = path.join(process.cwd(), "content/posts");
 
 export interface PostMeta {
   slug: string;
@@ -29,6 +30,10 @@ export interface Post extends PostMeta {
   headings: { id: string; text: string; level: number }[];
 }
 
+function postsDirectory(lang: Locale): string {
+  return path.join(contentBase, lang);
+}
+
 function extractHeadingsFromHtml(
   html: string
 ): { id: string; text: string; level: number }[] {
@@ -38,26 +43,28 @@ function extractHeadingsFromHtml(
   while ((match = regex.exec(html)) !== null) {
     const level = parseInt(match[1], 10);
     const id = match[2];
-    // Strip HTML tags from heading content to get plain text
     const text = match[3].replace(/<[^>]*>/g, "").trim();
     headings.push({ id, text, level });
   }
   return headings;
 }
 
-export function getAllPostSlugs(): string[] {
-  const fileNames = fs.readdirSync(postsDirectory);
+export function getAllPostSlugs(lang: Locale): string[] {
+  const dir = postsDirectory(lang);
+  if (!fs.existsSync(dir)) return [];
+  const fileNames = fs.readdirSync(dir);
   return fileNames
     .filter((name) => name.endsWith(".md"))
     .map((name) => {
-      // Remove date prefix: 2022-12-17-slug.md -> slug
       const match = name.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/);
       return match ? match[1] : name.replace(/\.md$/, "");
     });
 }
 
-function getPostFileName(slug: string): string | null {
-  const fileNames = fs.readdirSync(postsDirectory);
+function getPostFileName(lang: Locale, slug: string): string | null {
+  const dir = postsDirectory(lang);
+  if (!fs.existsSync(dir)) return null;
+  const fileNames = fs.readdirSync(dir);
   const file = fileNames.find((name) => {
     const match = name.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/);
     const fileSlug = match ? match[1] : name.replace(/\.md$/, "");
@@ -66,19 +73,20 @@ function getPostFileName(slug: string): string | null {
   return file || null;
 }
 
-export function getAllPosts(): PostMeta[] {
-  const fileNames = fs.readdirSync(postsDirectory);
+export function getAllPosts(lang: Locale): PostMeta[] {
+  const dir = postsDirectory(lang);
+  if (!fs.existsSync(dir)) return [];
+  const fileNames = fs.readdirSync(dir);
   const posts = fileNames
     .filter((name) => name.endsWith(".md"))
     .map((fileName) => {
-      const fullPath = path.join(postsDirectory, fileName);
+      const fullPath = path.join(dir, fileName);
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
 
       const match = fileName.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/);
       const slug = match ? match[1] : fileName.replace(/\.md$/, "");
 
-      // Extract date from filename
       const dateMatch = fileName.match(/^(\d{4}-\d{2}-\d{2})/);
       const date = dateMatch ? dateMatch[1] : data.date || "";
 
@@ -101,11 +109,14 @@ export function getAllPosts(): PostMeta[] {
   );
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const fileName = getPostFileName(slug);
+export async function getPostBySlug(
+  lang: Locale,
+  slug: string
+): Promise<Post | null> {
+  const fileName = getPostFileName(lang, slug);
   if (!fileName) return null;
 
-  const fullPath = path.join(postsDirectory, fileName);
+  const fullPath = path.join(postsDirectory(lang), fileName);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 

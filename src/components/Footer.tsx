@@ -1,11 +1,14 @@
 import { siteConfig } from "@/lib/site-config";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-export default function Footer() {
+export default function Footer({ lang }: { lang: Locale }) {
+  const t = getDictionary(lang);
+
   return (
     <footer className="border-t border-neutral-200 dark:border-neutral-800">
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-6 py-8 sm:flex-row sm:justify-between">
         <p className="text-sm text-neutral-500 dark:text-neutral-400">
-          &copy; {new Date().getFullYear()} {siteConfig.title}. All rights reserved.
+          &copy; {new Date().getFullYear()} {siteConfig.title}. {t.footer.rights}
         </p>
         <div className="flex items-center gap-4">
           <a

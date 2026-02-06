@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -33,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh">
       <head>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.gaId}`}
@@ -49,9 +47,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="antialiased flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

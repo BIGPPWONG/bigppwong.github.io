@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import type { PostMeta } from "@/lib/posts";
+import type { Locale } from "@/lib/i18n";
 
-export default function PostCard({ post }: { post: PostMeta }) {
+export default function PostCard({ post, lang }: { post: PostMeta; lang: Locale }) {
   return (
     <article className="group">
-      <Link href={`/posts/${post.slug}`} className="block">
+      <Link href={`/${lang}/posts/${post.slug}`} className="block">
         <div className="rounded-lg border border-neutral-200 p-6 transition-all hover:border-neutral-400 hover:shadow-sm dark:border-neutral-800 dark:hover:border-neutral-600">
           <div className="mb-2 flex flex-wrap items-center gap-2">
             <time className="text-sm text-neutral-500 dark:text-neutral-400" dateTime={post.date}>
