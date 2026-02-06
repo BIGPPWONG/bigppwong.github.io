@@ -43,7 +43,7 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12">
-      <div className="flex gap-12">
+      <div className="flex flex-col gap-12 xl:flex-row">
         {/* Main content */}
         <article className="min-w-0 max-w-4xl flex-1">
           <header className="mb-8">
@@ -80,7 +80,7 @@ export default async function PostPage({ params }: PageProps) {
         </article>
 
         {/* Table of Contents sidebar */}
-        <aside className="w-64 shrink-0">
+        <aside className="hidden w-64 shrink-0 xl:block">
           <TableOfContents headings={post.headings} />
         </aside>
       </div>
