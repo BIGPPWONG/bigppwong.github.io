@@ -59,9 +59,9 @@ export default async function PostPage({ params }: PageProps) {
   const datePattern = lang === "zh" ? "yyyy 年 M 月 d 日" : "MMMM d, yyyy";
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
-      <div className="flex flex-col gap-12 xl:flex-row">
-        <article className="min-w-0 max-w-4xl flex-1">
+    <div className="mx-auto max-w-4xl px-6 py-12">
+      <div className="relative">
+        <article className="min-w-0">
           <header className="mb-8">
             <h1 className="mb-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
               {post.title}
@@ -97,7 +97,7 @@ export default async function PostPage({ params }: PageProps) {
           />
         </article>
 
-        <aside className="hidden w-64 shrink-0 xl:block">
+        <aside className="absolute bottom-0 left-full top-0 hidden xl:block xl:w-48 xl:pl-6 2xl:w-64 2xl:pl-8">
           <TableOfContents headings={post.headings} lang={lang} />
         </aside>
       </div>

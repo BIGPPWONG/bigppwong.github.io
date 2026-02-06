@@ -19,7 +19,7 @@ export default async function LangLayout({
   return (
     <>
       <Header lang={lang} />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 overflow-x-clip">{children}</main>
       <Footer lang={lang} />
     </>
   );
