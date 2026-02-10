@@ -72,13 +72,13 @@ Image super-resolution is a focused tool that excels in these scenarios:
 - **Old Photo Restoration**: Scanned old photos typically have low resolution, upscaling significantly improves appearance
 - **Screenshot Sharing**: When sending screenshots to colleagues or clients, upscaling makes text clearer and more readable
 
-## Free Quota and Pricing
+## Completely Free, Unlimited Use
 
-Wipely's image super-resolution **works without login**, with 3 free uses per day.
+Wipely's image super-resolution feature is **completely free with no registration required and no usage limits**.
 
-After registering for a free account, you get 10 uses per day—plenty for occasional image processing.
+Just open the page and use it. Process as many images as you want, without worrying about quotas or payments.
 
-If you need higher precision modes (like 4x upscaling) or unlimited use, there's a Pro subscription available, though I think most people will find the free version sufficient.
+We built this feature to help people quickly process images, so we decided to keep it completely free.
 
 ## Works Better With Other Tools
 
@@ -105,6 +105,6 @@ If you frequently encounter these situations:
 
 Wipely's image super-resolution feature should help.
 
-Works in your browser, runs locally, privacy-safe, fast processing, with enough free quota for daily use.
+Works in your browser, runs locally, privacy-safe, fast processing, **completely free with unlimited use**.
 
 Give it a try: [wipelyai.cv](https://wipelyai.cv)
