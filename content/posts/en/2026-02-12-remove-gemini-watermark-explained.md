@@ -144,33 +144,13 @@ Even if you're not a developer, understanding this principle helps you appreciat
 3. **Privacy-first design** - Local processing means your images stay yours
 4. **Ethical and legal** - You're just undoing a transformation on your own generated images
 
-## Try It Yourself - No Coding Required
-
-Want to remove Gemini watermarks from your images without any technical hassle?
-
-We've built a completely free tool that implements this exact method:
-
-**[Gemini Watermark Remover on Wipely AI](https://www.wipelyai.cv/en/gemini-watermark-remover)**
-
-### What makes it special:
-
-- **Instant processing** - Upload your image and get the clean version in seconds
-- **100% free** - No registration, no limits, no hidden costs
-- **Browser-based** - No software to download or install
-- **Privacy-safe** - All processing happens locally in your browser
-- **Works on any device** - Desktop, laptop, tablet, even mobile
-
-Just drag and drop your Gemini-generated image, and our tool handles everything automatically using the mathematical reversal method described above.
-
 ## Summary
 
-Removing Gemini watermarks isn't about "hacking" or complex image editing. It's about understanding that:
+The principle behind removing Gemini watermarks is actually quite simple:
 
-1. Gemini adds watermarks using a simple mathematical blending process
+1. Gemini adds watermarks using a mathematical blending process
 2. This process can be mathematically reversed if you know the watermark template
-3. The reversal gives you back your exact original pixels with perfect quality
-4. Modern web browsers can perform this calculation locally in seconds
+3. The reversal recovers the exact original pixels with zero loss
+4. Modern web browsers can perform these calculations locally
 
-Whether you're a designer who needs clean images for client work, a content creator making social media posts, or just someone who wants watermark-free AI images for personal use—now you understand both **how it works** and **where to do it**.
-
-Give it a try: [wipelyai.cv/en/gemini-watermark-remover](https://www.wipelyai.cv/en/gemini-watermark-remover)
+If you want a ready-to-use tool, try our [Gemini Watermark Remover](https://www.wipelyai.cv/en/gemini-watermark-remover)—browser-based, free, and unlimited.
